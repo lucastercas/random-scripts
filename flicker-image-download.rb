@@ -7,7 +7,6 @@
 # This scrit automates that, so all the photos are downloaded to the current
 # directory
 
-# TODO: Argument input of author
 # TODO: Argument input of number of pages, or number of photos?
 # TODO: Directly download the photos to a file? Or put the link in a text file?
 
@@ -20,11 +19,13 @@ def get_photo(author, photo)
   content = Net::HTTP.get(uri)
   page = Nokogiri::HTML(content)
   image_src = page.css("#allsizes-photo img").attr('src')
-  puts "Image Source: #{image_src}"
+  puts "curl #{image_src} > #{author}/#{photo}.jpg"
+  `curl #{image_src} > #{author}/#{photo}.jpg`
 end
 
 def get_photos(author, page)
   uri = URI("https://www.flickr.com/photos/#{author}/page#{page}")
+  print(uri)
   content = Net::HTTP.get(uri)
   page = Nokogiri::HTML(content)
   page.css('.photo-list-photo-view').each do |photo_list_photo_view|
@@ -36,8 +37,14 @@ def get_photos(author, page)
 end
 
 print "Starting Downloader\n"
-author = "megane_wakui"
 
-for i in 0..5
-  get_photos(author, i)
+input_array = ARGV
+author = input_array[0]
+if author then
+  Dir.mkdir author
+  for i in 0..5
+    get_photos(author, i)
+  end
+else
+  puts "Usage: ./flicker-image-download.rb <author_name>\n Ex: ./flicker-image-download.rb megane_wakui"
 end
