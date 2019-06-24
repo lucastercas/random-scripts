@@ -14,21 +14,22 @@ require 'rubygems'
 require 'nokogiri'
 require 'net/http'
 
+def get_content(uri)
+  uri = URI(uri)
+  page = Net::HTTP.get(uri)
+  content = Nokogiri::HTML(page)
+  return content
+end
+
 def get_photo(author, photo)
-  uri = URI("https://www.flickr.com/photos/#{author}/#{photo}/sizes/k/")
-  content = Net::HTTP.get(uri)
-  page = Nokogiri::HTML(content)
-  image_src = page.css("#allsizes-photo img").attr('src')
-  puts "curl #{image_src} > #{author}/#{photo}.jpg"
+  content = get_content("https://www.flickr.com/photos/#{author}/#{photo}/sizes/k/")
+  image_src = content.css("#allsizes-photo img").attr('src')
   `curl #{image_src} > #{author}/#{photo}.jpg`
 end
 
 def get_photos(author, page)
-  uri = URI("https://www.flickr.com/photos/#{author}/page#{page}")
-  print(uri)
-  content = Net::HTTP.get(uri)
-  page = Nokogiri::HTML(content)
-  page.css('.photo-list-photo-view').each do |photo_list_photo_view|
+  content  = get_content("https://www.flickr.com/photos/#{author}/page#{page}")
+  content.css('.photo-list-photo-view').each do |photo_list_photo_view|
     style =  photo_list_photo_view.attr('style')
     background_img = style[/url\((.*)\)/,1]
     background_url = background_img[/\.com\/.*\/(.\d+)_/, 1]
@@ -42,7 +43,8 @@ input_array = ARGV
 author = input_array[0]
 if author then
   Dir.mkdir author
-  for i in 0..5
+  for i in 1..6
+    puts "PAGE: #{i}"
     get_photos(author, i)
   end
 else
