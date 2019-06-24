@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: Lucas de Macedo
-# Github: lucasmtercas
+# Github: lucastercas
 # In flickr, it is very tiring and boring to download the photos of an artist,
 # the whole process taking around 5 or 6 clicks
 # This scrit automates that, so all the photos are downloaded to the current

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: Lucas de Macedo
-# Github: lucasmtercas
+# Github: lucastercas
 # This script automates most of the boring stuff in installing arch,
 # taking care of the part after the chroot.
 # Disclaimer: This script is for personal use only, and there are steps that
