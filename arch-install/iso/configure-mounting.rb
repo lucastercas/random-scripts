@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Usage: ./configure-mounting.rb <disk>
 # Ex: ./configure-mounting.rb /dev/sda
 

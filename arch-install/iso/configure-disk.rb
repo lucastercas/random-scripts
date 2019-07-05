@@ -1,11 +1,5 @@
-#!/usr/bin/env ruby
-
 # Usage: ./configure-disk.rb <disk>
 # Ex: ./configure-disk.rb /dev/sda
-
-disk = ARGV[0]
-clear_disk(disk)
-configure_disk(disk)
 
 def clear_disk(disk)
   puts("Clearing disk #{disk}")
@@ -14,13 +8,13 @@ end
 
 def configure_disk(disk)
   puts "Size of EFI (mb):"
-  efi_size = gets
+  efi_size = $stdin.gets
 
   puts "Size of ROOT (gb):"
-  root_size = gets
+  root_size = $stdin.gets
 
   puts "Size of SWAP (gb):"
-  swap_size = gets
+  swap_size = $stdin.gets
 
   partitions = [ 
     [1, 'efi', 'ef00', "+#{efi_size.chomp}MiB"],
@@ -34,7 +28,7 @@ def configure_disk(disk)
   end
 
   puts "Formatting EFI"
-  `mkfs.fat32 -F32 #{disk}1`
+  `mkfs.vfat -F32 #{disk}1`
 
   puts "Formating ROOT"
   `mkfs.ext4 #{disk}2`
@@ -44,10 +38,14 @@ def configure_disk(disk)
   `swapon #{disk}3`
 
   puts "Formating HOME"
-  `mkfs ext4 #{disk}4`
+  `mkfs.ext4 #{disk}4`
 end
 
 def create_partition(disk, num, start, _end, name, type)
     puts("Creating partition #{name} - Size: #{_end}")
     `sgdisk -n #{num}:#{start}:#{_end} -c #{num}:\"#{name}\" -t #{num}:#{type} #{disk}`
 end
+
+disk = ARGV[0]
+clear_disk(disk)
+configure_disk(disk)
