@@ -5,9 +5,9 @@ disk = ARGV[0]
 
 `mount #{disk}2 /mnt`
 
-`mkdir /mnt/home`
+`mkdir -p /mnt/home`
 `mount #{disk}4 /mnt/home`
 
-`mkdir /mnt/boot/efi`
-`mkdir /mnt/boot`
+`mkdir -p /mnt/boot`
+`mkdir -p /mnt/boot/efi`
 `mount #{disk}1 /mnt/boot/efi`
