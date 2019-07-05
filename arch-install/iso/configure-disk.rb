@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Usage: ./configure-disk.rb <disk>
-# Ex: ./configure-disk.rb sda
+# Ex: ./configure-disk.rb /dev/sda
 
 disk = ARGV[0]
 clear_disk(disk)
