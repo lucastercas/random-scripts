@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: Lucas de Macedo
 # Github: lucastercas
 # This script automates most of the boring stuff in installing arch,
@@ -8,7 +6,7 @@
 # are private sensitive that are not here, so do not blame me if you use it.
 #
 puts('Installing Arch Packages')
-default_packages_file = File.open("arch/default-packages.txt")
+default_packages_file = File.open("default-packages.txt")
 
 default_packages = []
 default_packages_file.each_line do |line|
