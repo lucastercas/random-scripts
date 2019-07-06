@@ -148,6 +148,7 @@ pandoc
 
 ## Font
 freetype2
+ttf-hack
 
 ## File System
 libgsf
