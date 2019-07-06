@@ -6,6 +6,8 @@ mtools
 linux-headers
 refind-efi
 dialog
+gnupg
+xterm
 
 ## Network
 networkmanager
@@ -76,6 +78,7 @@ system-config-printer
 ## Terminals
 zsh
 sakura
+xfce4-terminal
 
 ## Coding
 #code
