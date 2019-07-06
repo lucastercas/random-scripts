@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Usage: ./configure-location.rb <location>
 # Ex: ./configure-location.rb pt_BR.UTF-8
 

@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Usage: ./configure-user.rb
 # Ex: ./configure-user.rb
 
