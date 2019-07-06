@@ -9,3 +9,5 @@ username = ARGV[0]
 # Delete wheel all line
 # TODO: Automate this with awk?
 `useradd -m #{username} -G wheel`
+`passwd`
+`passwd #{username}`

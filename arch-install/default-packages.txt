@@ -5,13 +5,14 @@ os-prober
 mtools
 linux-headers
 refind-efi
+dialog
 
 ## Network
 networkmanager
 wpa_supplicant
-blueberry
-bluez
-bluez-utils
+#blueberry
+#bluez
+#bluez-utils
 network-manager-applet
 openssh
 
@@ -50,10 +51,10 @@ arandr
 zathura
 evince
 feh
-inkscape
-gimp
-imagemagick
-libreoffice
+#inkscape
+#gimp
+#imagemagick
+#libreoffice
 
 ## Image
 scrot
@@ -77,14 +78,14 @@ zsh
 sakura
 
 ## Coding
-code
+#code
 vim
 neovim
-mousepad
+#mousepad
 python-neovim
 git
 #npm
-tidy
+#tidy
 
 ## Zip
 zip
@@ -102,7 +103,6 @@ hdparm
 util-linux
 xclip
 
-
 ## Audio
 mpd
 pavucontrol
@@ -119,8 +119,8 @@ pulseaudio-zeroconf
 ## Browser
 firefox
 w3m
-chromium
-unichrome-dri
+#chromium
+#unichrome-dri
 
 ## Notification
 dunst
@@ -139,9 +139,9 @@ help2man
 pandoc
 
 ## Latex
-texlive-most
-biber
-texlive-lang
+#texlive-most
+#biber
+#texlive-lang
 
 ## Font
 freetype2
@@ -168,10 +168,10 @@ rsync
 
 ## Pacman
 pacman-contrib
-reflector
+#reflector
 
 postgresql
-mariadb-libs
+#mariadb-libs
 
 xfce4-screenshooter
 accountsservice

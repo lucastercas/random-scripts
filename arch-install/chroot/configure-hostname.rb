@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Usage: ./configure-hostname.rb <hostname
 # Ex: ./configure-hostname hyperion
 
