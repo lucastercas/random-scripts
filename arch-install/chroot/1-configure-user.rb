@@ -3,9 +3,9 @@
 
 username = ARGV[0]
 
-#`visudo`
+#"visudo"
 # Delete wheel all line
 # TODO: Automate this with awk?
-`useradd -m #{username} -G wheel`
-`passwd`
-`passwd #{username}`
+system("useradd -m #{username} -G wheel")
+system("passwd")
+system("passwd #{username}")

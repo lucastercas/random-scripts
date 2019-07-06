@@ -2,4 +2,4 @@
 # Ex: ./configure-hostname hyperion
 
 hostname = ARGV[0]
-`echo #{hostname} >> /etc/hostname`
+system("echo #{hostname} >> /etc/hostname")

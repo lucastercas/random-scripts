@@ -3,7 +3,7 @@
 
 def clear_disk(disk)
   puts("Clearing disk #{disk}")
-  `sgdisk -oZg #{disk}`
+  system("sgdisk -oZg #{disk}")
 end
 
 def configure_disk(disk)
@@ -28,22 +28,22 @@ def configure_disk(disk)
   end
 
   puts "Formatting EFI"
-  `mkfs.vfat -F32 #{disk}1`
+  system("mkfs.vfat -F32 #{disk}1")
 
   puts "Formating ROOT"
-  `mkfs.ext4 #{disk}2`
+  system("mkfs.ext4 #{disk}2")
 
   puts "Formating SWAP"
-  `mkswap #{disk}3`
-  `swapon #{disk}3`
+  system("mkswap #{disk}3")
+  system("swapon #{disk}3")
 
   puts "Formating HOME"
-  `mkfs.ext4 #{disk}4`
+  system("mkfs.ext4 #{disk}4")
 end
 
 def create_partition(disk, num, start, _end, name, type)
     puts("Creating partition #{name} - Size: #{_end}")
-    `sgdisk -n #{num}:#{start}:#{_end} -c #{num}:\"#{name}\" -t #{num}:#{type} #{disk}`
+    system("sgdisk -n #{num}:#{start}:#{_end} -c #{num}:\"#{name}\" -t #{num}:#{type} #{disk}")
 end
 
 disk = ARGV[0]

@@ -3,11 +3,11 @@
 
 disk = ARGV[0]
 
-`mount #{disk}2 /mnt`
+system("mount #{disk}2 /mnt")
 
-`mkdir -p /mnt/home`
-`mount #{disk}4 /mnt/home`
+system("mkdir -p /mnt/home")
+system("mount #{disk}4 /mnt/home")
 
-`mkdir -p /mnt/boot`
-`mkdir -p /mnt/boot/efi`
-`mount #{disk}1 /mnt/boot/efi`
+system("mkdir -p /mnt/boot")
+system("mkdir -p /mnt/boot/efi")
+system("mount #{disk}1 /mnt/boot/efi")

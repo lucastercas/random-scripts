@@ -1,19 +1,36 @@
 # Author: Lucas de Macedo
 # Github: lucastercas
-# This script automates most of the boring stuff in installing arch,
-# taking care of the part after the chroot.
-# Disclaimer: This script is for personal use only, and there are steps that
-# are private sensitive that are not here, so do not blame me if you use it.
-#
-puts('Installing Arch Packages')
-default_packages_file = File.open("default-packages.txt")
 
-default_packages = []
-default_packages_file.each_line do |line|
-  if line[0] != '#' then
-    default_packages.append(line.gsub("\n", ''))
+def getPackagesFromFile(file)
+  packages_file = File.open(file)
+  packages = []
+  packages_file.each_line do |line|
+    if line[0] != '#' then
+      packages.append(line.gsub("\n", ''))
+    end
   end
+  packages = packages.join(' ')
 end
-default_packages = default_packages.join(' ')
 
-system("sudo pacman -S #{default_packages}")
+def installDefaultPackages()
+  puts 'Installing Arch Packages'
+  default_packages = getPackagesFromFile('default-packages.txt')
+  system("sudo pacman -S #{default_packages}")
+end
+
+def installYay()
+  puts "Installing Yay"
+  system("git clone https://aur.archlinux.org/yay.git ~/Downloads/yay")
+  system("cd ~/Downloads/yay")
+  system("makepkg -si")
+end
+
+def installAurPackages()
+  puts "Installing AUR Packages"
+  aur_packages = getPackagesFromFile("aur-packages.txt")
+  system("yay -S #{aur_packages}")
+end
+
+installDefaultPackages()
+installYay()
+installAurPackages()

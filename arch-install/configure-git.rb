@@ -3,5 +3,5 @@
 
 email = ARGV[0]
 username = ARGV[1]
-`git config --global user.email #{email}`
-`git config --global user.name #{username}`
+system("git config --global user.email #{email}")
+system("git config --global user.name #{username}")
