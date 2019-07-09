@@ -1,6 +1,10 @@
+# Author: Lucas de Macedo
+# Github: lucastercas
+
 # Usage: ./configure-mounting.rb <disk>
 # Ex: ./configure-mounting.rb /dev/sda
 
+puts "=== Configuring Disk ==="
 disk = ARGV[0]
 
 system("mount #{disk}2 /mnt")

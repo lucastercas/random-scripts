@@ -15,20 +15,20 @@ end
 def installDefaultPackages()
   puts 'Installing Arch Packages'
   default_packages = getPackagesFromFile('default-packages.txt')
-  system("sudo pacman -S #{default_packages}")
+  system "sudo pacman -S #{default_packages}"
 end
 
 def installYay()
   puts "Installing Yay"
-  system("git clone https://aur.archlinux.org/yay.git ~/Downloads/yay")
-  system("cd ~/Downloads/yay")
-  system("makepkg -si")
+  system "git clone https://aur.archlinux.org/yay.git ~/Downloads/yay"
+  system "cd ~/Downloads/yay"
+  system "makepkg -si"
 end
 
 def installAurPackages()
   puts "Installing AUR Packages"
   aur_packages = getPackagesFromFile("aur-packages.txt")
-  system("yay -S #{aur_packages}")
+  system "yay -S #{aur_packages}"
 end
 
 installDefaultPackages()

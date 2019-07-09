@@ -1,7 +1,15 @@
-# Usage: ./configure-git.rb <email> <username>
-# Ex: ./configure-git.rb lucasmtercas@gmail.com lucastercas
+# Author: Lucas de Macedo
+# Github: lucastercas
 
-email = ARGV[0]
-username = ARGV[1]
-system("git config --global user.email #{email}")
-system("git config --global user.name #{username}")
+# Usage: ./configure-git.rb
+# Ex: ./configure-git.rb
+
+puts "=== Configuring Ruby ==="
+
+puts "Email: "
+email = $stdin.gets.chomp
+system "git config --global user.email #{email}"
+
+puts "Username: "
+username = $stdin.gets.chomp
+system "git config --global user.name #{username}"
