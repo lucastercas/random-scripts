@@ -11,7 +11,7 @@ def get_option(question)
   end
 end
 
-puts "===== Installing Into Chroot ====="
+puts "===== Configuring System ====="
 
 location = get_option("Configure Location?")
 if location then

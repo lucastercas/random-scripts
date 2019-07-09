@@ -6,27 +6,30 @@ def clear_disk(disk)
   system("sgdisk -oZg #{disk}")
 end
 
-def configure_disk(disk)
-  puts "Size of EFI (mb):"
-  efi_size = $stdin.gets
+def get_partition(disk)
+  partition = {
+    num: "",
+    name: "",
+    start: "",
+    end: "",
+    code: ""
+  }
 
-  puts "Size of ROOT (gb):"
-  root_size = $stdin.gets
+  puts "Name of partition: "
+  partition.name = $stdin.gets.chomp
 
-  puts "Size of SWAP (gb):"
-  swap_size = $stdin.gets
+  puts "Size of partition: "
+  puts "+XXGib +YYMiB"
+  partition.start = $stdin.gets.chomp
 
-  partitions = [ 
-    [1, 'efi', 'ef00', "+#{efi_size.chomp}MiB"],
-    [2, 'root', '8300', "+#{root_size.chomp}Gib"],
-    [3, 'swap', '8200', "+#{swap_size.chomp}GiB"],
-    [4, 'home', '8302', '0']
-  ]
+  puts "Code of partition: "
+  puts "efi -> ef00\nroot->8300\nswap->8200\nlinux->8302"
+  partition.code = $stdin.gets.chomp
 
-  partitions.each do |part|
-    create_partition(disk, part[0], "0", part[3], part[1], part[2])
-  end
+  return partition
+end
 
+def format_partition(disk, partition)
   puts "Formatting EFI"
   system("mkfs.vfat -F32 #{disk}1")
 
@@ -41,11 +44,26 @@ def configure_disk(disk)
   system("mkfs.ext4 #{disk}4")
 end
 
-def create_partition(disk, num, start, _end, name, type)
+def create_partition(disk, partition)
     puts("Creating partition #{name} - Size: #{_end}")
-    system("sgdisk -n #{num}:#{start}:#{_end} -c #{num}:\"#{name}\" -t #{num}:#{type} #{disk}")
+    system("sgdisk -n #{partition.num}:#{partition.start}:#{partition.end} -c #{partition.num}:\"#{partition.name}\" -t #{partition.num}:#{partition.code} #{partition.disk}")
 end
 
-disk = ARGV[0]
-clear_disk(disk)
+def configure_disk(disk)
+
+  partitions = []
+
+  while true do
+    new_partition = get_partition()
+    partition.push(new_partition)
+  end
+
+  partitions.each do |part|
+    create_partition(part)
+  end
+
+end
+
+puts "Disk: "
+disk = $stdin.gets.chomp
 configure_disk(disk)
