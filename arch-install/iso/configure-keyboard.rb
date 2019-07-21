@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
+# Author: Lucas de Macedo
+# Github: lucastercas
 
-# Usage: ./configure-keyboard.rb <layout>
-# Ex: ./configure-keyboard.rb br-abnt2
-layout = ARGV[0]
+# Usage: ./configure-keyboard.rb
+# Ex: ./configure-keyboard.rb
 
-puts "Configure keys to #{layout}"
-system "loadkeys #{layout}"
+puts "===== Configuring Keyboard ====="
+puts "Layout of the keyboard: (ex: br-abnt2)"
+layout = gets.chomp
+
+puts "Configuring keys to #{layout}"
+puts "loadkeys #{layout}"
