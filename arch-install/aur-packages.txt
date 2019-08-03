@@ -1,8 +1,7 @@
 spotify
 dropbox
 redshift-gtk-git
-trizen
-google-chrome
+#google-chrome
 xfce-polkit
 gitkraken
 polybar
@@ -13,13 +12,13 @@ oomox
 pop-gtk-theme-git
 pop-icon-theme-git
 lightdm-webkit2-theme-material2-git
-ttf-material-icons
+#ttf-material-icons
 nerd-fonts-complete
 ttf-font-awesome-4
 telegram-desktop
 discord
 ttf-hack-ibx
 refind-theme-regular-git
-plymouth
+#plymouth
 nerd-fonts
 

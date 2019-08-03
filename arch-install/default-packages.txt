@@ -6,6 +6,7 @@ mtools
 linux-headers
 refind-efi
 dialog
+yaourt
 
 ## Network
 networkmanager
@@ -76,6 +77,7 @@ system-config-printer
 ## Terminals
 zsh
 sakura
+xfce4-terminal
 
 ## Coding
 #code
@@ -144,6 +146,7 @@ pandoc
 #texlive-lang
 
 ## Font
+ttf-hack
 freetype2
 
 ## File System
