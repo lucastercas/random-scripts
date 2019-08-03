@@ -6,7 +6,7 @@
 
 puts "=== Configuring Location ==="
 
-puts "Location: "
+puts "Location: (Ex: pt_BR.UTF-8)"
 location = $stdin.gets.chomp
 
 system "ln -sf /usr/share/zoneinfo/America/Fortaleza /etc/localtime"

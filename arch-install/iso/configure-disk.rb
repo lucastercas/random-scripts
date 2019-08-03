@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
+
 # Author: Lucas de Macedo
 # Github: lucastercas
 
-# Usage: ./configure-disk.rb <disk>
+# Usage: ./configure-disk.rb
 # Ex: ./configure-disk.rb
 
 def clear_disk(disk)
@@ -38,23 +39,27 @@ end
 
 # TODO: Different format type for different partition types
 def format_partition(disk, partition)
-  puts "Formatting EFI"
-  puts "mkfs.vfat -F32 #{disk}1"
-
-  puts "Formating ROOT"
-  puts "mkfs.ext4 #{disk}2"
-
-  puts "Formating SWAP"
-  puts "mkswap #{disk}3"
-  puts "swapon #{disk}3"
-
-  puts "Formating HOME"
-  puts "mkfs.ext4 #{disk}4"
+  case partition[:code]
+  when "ef00"
+    puts "Formatting EFI -> #{disk}/#{partiton[:num]}"
+    puts "mkfs.vfat -F32 #{disk}/#{partiton[:num]}"
+  when "8300"
+    puts "Formating ROOT -> #{disk}/#{partition[:code]}"
+    puts "mkfs.ext4 #{disk}/#{partition[:code]}"
+  when "8200"
+    puts "Formating SWAP -> #{disk}/#{partition[:code]}"
+    puts "mkswap #{disk}/#{partition[:code]}"
+    puts "swapon #{disk}/#{partition[:code]}"
+  when "8302"
+    puts "Formating LINUX -> /#{partition[:code]}"
+    puts "mkfs.ext4 #{disk}/#{partition[:code]}"
+  else
+    puts "Code not recognized"
+  end
 end
 
 def create_partition(disk, partition)
     puts "Creating partition #{partition[:name]} - Size: #{partition[:end]}"
-
     system "sgdisk -n #{partition[:num]}:#{partition[:start]}:#{partition[:end]} -c #{partition[:num]}:\"#{partition[:name]}\" -t #{partition[:num]}:#{partition[:code]} #{partition[:disk]}"
 end
 
@@ -96,6 +101,7 @@ def configure_disk(disk)
 
   partitions.each do |part|
     create_partition(disk, part)
+    format_partition(disk, part)
   end
 
 end

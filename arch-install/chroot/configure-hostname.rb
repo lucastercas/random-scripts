@@ -6,7 +6,7 @@
 
 puts "=== Configuring Hostname ==="
 
-puts "Hostname:"
+puts "Hostname: (Ex: hyperion)"
 hostname = $stdin.gets.chomp
 
 system "echo #{hostname} >> /etc/hostname"

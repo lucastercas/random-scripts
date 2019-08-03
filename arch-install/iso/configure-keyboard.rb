@@ -9,5 +9,5 @@ puts "===== Configuring Keyboard ====="
 puts "Layout of the keyboard: (ex: br-abnt2)"
 layout = gets.chomp
 
-puts "Configuring keys to #{layout}"
-puts "loadkeys #{layout}"
+system "Configuring keys to #{layout}"
+system "loadkeys #{layout}"
